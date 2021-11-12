@@ -45,7 +45,7 @@ describe('Engineer', () => {
 
     describe('getRole', () => {
         it('should return "Engineer"', () => {
-            const engineer = new engineer(obj);
+            const engineer = new Engineer(obj);
 
             expect(engineer.getRole()).toBe('Engineer');
         });
@@ -53,7 +53,7 @@ describe('Engineer', () => {
 
     describe('getGithub', () => {
         it("should return engineer's github username", () => {
-            const engineer = new engineer(obj);
+            const engineer = new Engineer(obj);
 
             expect(engineer.getGithub()).toBe('janedoe');
         });
