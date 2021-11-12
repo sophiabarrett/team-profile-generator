@@ -1,4 +1,4 @@
-const Inter = require('../lib/Intern');
+const Intern = require('../lib/Intern');
 
 const obj = {
     name: 'Jane Doe',
@@ -10,7 +10,7 @@ const obj = {
 describe('Intern', () => {
     describe('constructor', () => {
         it('should create Intern object', () => {
-            const intern = new Inter(obj);
+            const intern = new Intern(obj);
 
             expect(intern.name).toBe('Jane Doe');
             expect(intern.id).toBe('0123456789');
