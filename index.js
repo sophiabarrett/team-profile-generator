@@ -1,7 +1,9 @@
 const inquirer = require('inquirer');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
-// setup employee questions
-function employeeQuestions(type) {
+function getTeamMemberInfo(type) {
     const questions = [
         {
             type: 'input',
@@ -17,82 +19,96 @@ function employeeQuestions(type) {
             type: 'input',
             name: 'email',
             message: "Email:"
-        },
+        }
     ];
+
     if (type === 'manager') {
-        console.log(`
-----------------
-Add Team Manager:
-`);
+        console.log('\n-----------------\nAdd Team Manager:');
         questions.push({
             type: 'input',
             name: 'officeNum',
             message: "Office Number:"
         });
     }
-        
+
+    if (type === 'engineer') {
+        console.log('\n-----------------\nAdd Engineer:');
+        questions.push({
+            type: 'input',
+            name: 'github',
+            message: "GitHub Username:"
+        });
+    }
+
+    if (type === 'intern') {
+        console.log('\n-----------------\nAdd Intern:');
+        questions.push({
+            type: 'input',
+            name: 'school',
+            message: "School Name:"
+        });
+    }
+
     return questions;
 }
 
-// prompt user to add employees
-function addEmployees(employees) {
-    console.log('\n----------------');
+function addEmployees(team) {
+    console.log('\n-----------------');
     return inquirer
         .prompt({
-                type: 'list',
-                name: 'addOption',
-                message: 'Would you like to add another person to this team?',
-                choices: [
-                    'Add Engineer',
-                    'Add Intern',
-                    "I'm done adding people. Finish building my team!"
-                ]
-            })
-        .then(({ addOption }) => {
-            if (addOption === "I'm done adding people. Finish building my team!") {
-                return false;
-            } else if (addOption === 'Add Engineer') {
-                return 'engineer object';
-            } else if (addOption === 'Add Intern') {
-                return 'intern object';
-            }
+            type: 'list',
+            name: 'addOption',
+            message: 'Would you like to add another person to this team?',
+            choices: [
+                'Add Engineer',
+                'Add Intern',
+                "I'm done adding people. Finish building my team!"
+            ]
         })
-        .then(newEmployee => {
-            if (newEmployee) {
-                employees.push(newEmployee);
-                return addEmployees(employees);
-            } else {
-                return employees;
-            };
+        .then(({ addOption }) => {
+            if (addOption === 'Add Engineer') {
+                return inquirer
+                    // prompt user for engineer info
+                    .prompt(getTeamMemberInfo('engineer'))
+                    .then(engineer => {
+                        team.push(new Engineer(engineer));
+                        return addEmployees(team);
+                    });
+            } else if (addOption === 'Add Intern') {
+                return inquirer
+                    // prompt user for intern info
+                    .prompt(getTeamMemberInfo('intern'))
+                    .then(intern => {
+                        team.push(new Intern(intern));
+                        return addEmployees(team);
+                    });
+            } else if (addOption === "I'm done adding people. Finish building my team!") {
+                return team;
+            }
         });
 }
 
-// prompt user to answer questions
 function promptUser() {
-    // setup team object to push all team data into
-    team = {};
+    // setup team array to recieve user prompts
+    team = [];
 
     return inquirer
-        .prompt(employeeQuestions('manager'))
+        .prompt(
+            // prompt user for manager info
+            getTeamMemberInfo('manager')
+        )
         .then(manager => {
-            team.manager = manager;
-            const employees = [];
-            return addEmployees(employees);
-        })
-        .then(employees => {
-            if (employees.length > 0) {
-                team.employees = employees;
-            }
-            return team;
+            team.push(new Manager(manager));
+            // prompt user to add employees
+            return addEmployees(team);
         });
 }
 
-// Run app
 function init() {
     promptUser()
-    .then(team => {
-        console.log(team);
-    })
+        .then(team => {
+            console.log(team);
+        })
 }
 
 init();
