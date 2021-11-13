@@ -21,7 +21,7 @@ function promptUser() {
             github: '570-440-8889'
         }
         const ryan = {
-            name: 'Ryan Howard!',
+            name: 'Ryan Howard',
             id: '9',
             email: 'ryan@woof.com',
             school: 'School of Life'
