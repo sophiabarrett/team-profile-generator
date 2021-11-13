@@ -1,35 +1,38 @@
 function generateTeamMemberCards(teamData) {
-    return `
-    <section>
-        ${teamData
-            .filter(({ role }) => role === 'Manager')
-            .map(({ name, id, email, officeNum }) => {
-                return `
-                <h2>${name}</h2>
-                <h3>Manager</h3>
-                `
-            })}
+    return `${teamData.filter(( teamMember ) => teamMember.getRole() === 'Manager')
+        .map(( manager ) => {
+            return `
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card m-2 p-2">
+                    <h2>${ manager.getName() }</h2>
+                    <h3>${ manager.getRole() }</h3>
+                </div>
+            </div>`;
+        })}
 
-        ${teamData
-            .filter(({ role }) => role === 'Engineer')
-            .map(({ name, id, email, github }) => {
-                return `
-                <h2>${name}</h2>
-                <h3>Engineer</h3>
-                `
-            })
-            .join('')}
+        ${teamData.filter(( teamMember ) => teamMember.getRole() === 'Engineer')
+        .map(( engineer ) => {
+            return `
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card m-2 p-2">
+                    <h2>${ engineer.getName() }</h2>
+                    <h3>${ engineer.getRole() }</h3>
+                </div>
+            </div>`;
+        })
+        .join('')}
 
-        ${teamData
-            .filter(({ role }) => role === 'Intern')
-            .map(({ name, id, email, school }) => {
-                return `
-                <h2>${name}</h2>
-                <h3>Intern</h3>
-                `
-            })
-            .join('')}
-    </section
+        ${teamData.filter(( teamMember ) => teamMember.getRole() === 'Intern')
+        .map(( intern ) => {
+            return `
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card m-2 p-2">
+                    <h2>${ intern.getName() }</h2>
+                    <h3>${ intern.getRole() }</h3>
+                </div>
+            </div>`;
+        })
+        .join('')}
 `;
 }
 
@@ -46,7 +49,16 @@ function generateHTML(teamData) {
 </head>
 
 <body>
-${generateTeamMemberCards(teamData)}
+
+    <header class="container-fluid p-5 bg-primary">
+        <h1 class="text-light text-center">My Team</h1>
+    </header>
+
+    <main class="container-md my-5">
+        <div class="row justify-content-center">
+            ${generateTeamMemberCards(teamData)}
+        </div>
+    </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
