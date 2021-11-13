@@ -1,6 +1,6 @@
 const promptUser = require('./utils/prompts');
-const { writeHTML, copyCSS } = require('./utils/generate-files');
 const generateHTML = require('./src/page-template');
+const writeFile = require('./utils/generate-files');
 
 function init() {
     promptUser()
@@ -8,7 +8,9 @@ function init() {
         return generateHTML(teamData);
     })
     .then(pageHTML => {
-        console.log(pageHTML);
+        return writeFile('./dist/index.html', pageHTML)
+    }).then(writeFileResponse => {
+        console.log(writeFileResponse);
     });
 }
 

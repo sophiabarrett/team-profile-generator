@@ -1,9 +1,16 @@
-const writeHTML = () => {
+const fs = require('fs');
 
+const writeFile = (fileName, data) => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(fileName, data, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+
+            resolve('File create! Check the "dist" folder for your new HTML file.')
+        })
+    });
 }
 
-const copyCSS = () => {
-    
-}
-
-module.exports = { writeHTML, copyCSS };
+module.exports = writeFile;
