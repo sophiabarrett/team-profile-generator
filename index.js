@@ -12,13 +12,13 @@ function promptUser() {
             name: 'Michael Scott',
             id: '69',
             email: 'worldsgreatestboss@dundermifflin.com',
-            officeNum: '570-440-8888'
+            officeNum: '1'
         }
         const dwight = {
             name: 'Dwight Schrute',
             id: '7',
             email: 'dwight@dundermifflin.com',
-            github: '570-440-8889'
+            github: 'dwightschrute'
         }
         const ryan = {
             name: 'Ryan Howard',

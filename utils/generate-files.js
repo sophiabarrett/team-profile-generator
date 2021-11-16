@@ -8,7 +8,7 @@ const writeFile = (fileName, data) => {
                 return;
             }
 
-            resolve('File create! Check the "dist" folder for your new HTML file.')
+            resolve('File created! Check the "dist" folder for your new HTML file.')
         })
     });
 }

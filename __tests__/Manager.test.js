@@ -4,7 +4,7 @@ const obj = {
     name: 'Jane Doe',
     id: '0123456789',
     email: 'janedoe@company.com',
-    officeNum: '480-440-8888'
+    officeNum: '7'
 }
 
 describe('Manager', () => {
@@ -15,7 +15,7 @@ describe('Manager', () => {
             expect(manager.name).toBe('Jane Doe');
             expect(manager.id).toBe('0123456789');
             expect(manager.email).toBe('janedoe@company.com');
-            expect(manager.officeNum).toBe('480-440-8888');
+            expect(manager.officeNum).toBe('7');
         });
     });
 
@@ -44,6 +44,14 @@ describe('Manager', () => {
     });
 
     describe('getRole', () => {
+        it("should return manager's office number", () => {
+            const manager = new Manager(obj);
+
+            expect(manager.getOfficeNum()).toBe('7');
+        });
+    });
+
+    describe('getOfficeNum', () => {
         it('should return "Manager"', () => {
             const manager = new Manager(obj);
 
