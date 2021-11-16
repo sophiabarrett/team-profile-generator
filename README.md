@@ -9,10 +9,10 @@ Command line app that takes in user inputs about team members and generates an H
 3. Run command "node index.js" to start application
 
 ## Video Walkthrough
-Watch it in action here!
+[Watch it in action here!](https://watch.screencastify.com/v/lJfgooxYU3HQ389RQjhB)
 
 ## Sample HTML File
-View a sample generated HTML file here!
+[Download a sample generated HTML file here!](https://drive.google.com/uc?export=download&id=1vtVyJqVpBGU3BcsqVDMVOTUWUUQcCcOq)
 
 ## Built With
 * HTML
@@ -27,6 +27,8 @@ View a sample generated HTML file here!
 For questions contact Sophia Barrett at [sophia@yoursummit.media](mailto:sophia@yoursummit.media) or visit [github.com/sophiabarrett](https://github.com/sophiabarrett).
 
 ## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Copyright © 2021 Sophia Barrett
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
